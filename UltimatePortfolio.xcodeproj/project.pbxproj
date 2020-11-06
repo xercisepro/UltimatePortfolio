@@ -16,6 +16,8 @@
 		3E389BD52552064C009401EE /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E389BD42552064C009401EE /* CloudKit.framework */; };
 		3E389BD725521309009401EE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E389BD625521309009401EE /* HomeView.swift */; };
 		3E389BDB25521415009401EE /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E389BDA25521415009401EE /* ProjectView.swift */; };
+		3EE424EC255513F500C62833 /* Item-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE424EB255513F500C62833 /* Item-CoreDataHelpers.swift */; };
+		3EE424EF2555158D00C62833 /* Project-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE424EE2555158D00C62833 /* Project-CoreDataHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		3E389BD42552064C009401EE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		3E389BD625521309009401EE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		3E389BDA25521415009401EE /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
+		3EE424EB255513F500C62833 /* Item-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item-CoreDataHelpers.swift"; sourceTree = "<group>"; };
+		3EE424EE2555158D00C62833 /* Project-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,8 @@
 				3E389BBC2551F1B9009401EE /* ContentView.swift */,
 				3E389BCA2551F914009401EE /* Main.xcdatamodeld */,
 				3E389BCE2551FC5D009401EE /* DataController.swift */,
+				3EE424EB255513F500C62833 /* Item-CoreDataHelpers.swift */,
+				3EE424EE2555158D00C62833 /* Project-CoreDataHelpers.swift */,
 				3E389BD625521309009401EE /* HomeView.swift */,
 				3E389BDA25521415009401EE /* ProjectView.swift */,
 				3E389BBE2551F1BB009401EE /* Assets.xcassets */,
@@ -166,10 +172,12 @@
 			files = (
 				3E389BDB25521415009401EE /* ProjectView.swift in Sources */,
 				3E389BCC2551F914009401EE /* Main.xcdatamodeld in Sources */,
+				3EE424EF2555158D00C62833 /* Project-CoreDataHelpers.swift in Sources */,
 				3E389BCF2551FC5D009401EE /* DataController.swift in Sources */,
 				3E389BBD2551F1B9009401EE /* ContentView.swift in Sources */,
 				3E389BD725521309009401EE /* HomeView.swift in Sources */,
 				3E389BBB2551F1B9009401EE /* UltimatePortfolioApp.swift in Sources */,
+				3EE424EC255513F500C62833 /* Item-CoreDataHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
