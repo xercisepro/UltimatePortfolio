@@ -13,7 +13,7 @@ struct ContentView: View {
             HomeView()
                 .tabItem {
                     Image(systemName: "house")
-                    Text("House")
+                    Text("Home")
                 }
         
             ProjectView(showClosedProjects: false)
