@@ -10,7 +10,7 @@ import Foundation
 //Used to support optional values
 extension Item{
     var itemTitle: String{
-        title ?? ""
+        title ?? "New Item"
     }
     
     var itemDetail: String{
