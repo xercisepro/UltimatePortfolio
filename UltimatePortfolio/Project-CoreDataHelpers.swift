@@ -20,14 +20,15 @@ extension Project{
     }
     
     var projectColor: String{
-        color ?? "Light Blur"
+        color ?? "Light Blue"
     }
     
     var projectItems: [Item]{
-        let itemsArray = items?.allObjects as? [Item] ?? []
-        
-        return itemsArray.sorted{
-            first, second in
+        items?.allObjects as?  [Item] ?? []
+    }
+    
+    var projectItemsDefaultSorted: [Item]{
+        projectItems.sorted{ first, second in
             //put completed at bottom
             if first.completed == false{
                 if second.completed == true{

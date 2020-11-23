@@ -34,3 +34,9 @@ extension Item{
     }
 }
 
+extension Item{
+    enum SortOrder {
+        case optimised, title, creationDate
+    }
+}
+
