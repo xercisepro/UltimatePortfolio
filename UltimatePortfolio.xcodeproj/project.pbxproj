@@ -28,6 +28,7 @@
 		3EB4FD762559FDA600B0D019 /* Binding-OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4FD752559FDA600B0D019 /* Binding-OnChange.swift */; };
 		3EB4FD79255A0E0500B0D019 /* ProjectHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4FD78255A0E0500B0D019 /* ProjectHeaderView.swift */; };
 		3EB4FD7C255A104C00B0D019 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EB4FD7B255A104C00B0D019 /* Colors.xcassets */; };
+		3ECC0E55256CAB1700B757ED /* Color_Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECC0E54256CAB1700B757ED /* Color_Additions.swift */; };
 		3EE424EC255513F500C62833 /* Item-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE424EB255513F500C62833 /* Item-CoreDataHelpers.swift */; };
 		3EE424EF2555158D00C62833 /* Project-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE424EE2555158D00C62833 /* Project-CoreDataHelpers.swift */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 		3EB4FD752559FDA600B0D019 /* Binding-OnChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding-OnChange.swift"; sourceTree = "<group>"; };
 		3EB4FD78255A0E0500B0D019 /* ProjectHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectHeaderView.swift; sourceTree = "<group>"; };
 		3EB4FD7B255A104C00B0D019 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		3ECC0E54256CAB1700B757ED /* Color_Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color_Additions.swift; sourceTree = "<group>"; };
 		3EE424EB255513F500C62833 /* Item-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		3EE424EE2555158D00C62833 /* Project-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +105,7 @@
 				3E92D52B256C5ED3004585D4 /* Bundle-Decodable.swift */,
 				3E92D531256C68D2004585D4 /* Award.swift */,
 				3E92D534256C6AE5004585D4 /* AwardsView.swift */,
+				3ECC0E54256CAB1700B757ED /* Color_Additions.swift */,
 				3E92D52E256C6867004585D4 /* Awards.json */,
 				3E389BCE2551FC5D009401EE /* DataController.swift */,
 				3EB4FD78255A0E0500B0D019 /* ProjectHeaderView.swift */,
@@ -213,6 +216,7 @@
 				3E92D535256C6AE5004585D4 /* AwardsView.swift in Sources */,
 				3E389BCC2551F914009401EE /* Main.xcdatamodeld in Sources */,
 				3EE424EF2555158D00C62833 /* Project-CoreDataHelpers.swift in Sources */,
+				3ECC0E55256CAB1700B757ED /* Color_Additions.swift in Sources */,
 				3E6C3F0A2561F7D50074CA1C /* EditProjectView.swift in Sources */,
 				3E389BCF2551FC5D009401EE /* DataController.swift in Sources */,
 				3E365641256B689F00E79B8D /* SelectSomethingView.swift in Sources */,
