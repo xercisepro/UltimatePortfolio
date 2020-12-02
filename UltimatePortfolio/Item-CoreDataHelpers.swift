@@ -10,7 +10,7 @@ import Foundation
 //Used to support optional values
 extension Item{
     var itemTitle: String{
-        title ?? "New Item"
+        title ?? NSLocalizedString("New Item", comment: "Create a new item")
     }
     
     var itemDetail: String{
