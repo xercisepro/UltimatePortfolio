@@ -5,7 +5,7 @@
 //  Created by Andrew CP Markham on 6/11/20.
 //
 
-import Foundation
+import SwiftUI
 
 extension Project{
     
@@ -50,6 +50,10 @@ extension Project{
             //else sort by date
             return first.itemCreationDate < second.itemCreationDate
         }
+    }
+    
+    var label: LocalizedStringKey{
+        LocalizedStringKey("\(projectTitle), \(projectItems.count) items, \(completionAmount * 100, specifier: "%g")% complete.")
     }
     
     var completionAmount: Double{

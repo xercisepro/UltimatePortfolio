@@ -20,6 +20,51 @@ struct ProjectView: View {
     let showClosedProjects: Bool
     
     let projects: FetchRequest<Project>
+    var projectsList: some View{
+        List{
+            ForEach(projects.wrappedValue){ project in
+                Section(header: ProjectHeaderView(project: project)){
+                    ForEach(items(for: project)) { item in
+                        ItemRowView(project: project, item: item)
+                    }
+                    .onDelete { offsets in
+                        delete(offsets, from: project)
+                    }
+                    
+                    if showClosedProjects == false{
+                        Button{
+                            addItem(to: project)
+                        } label:{
+                            Label("Add New Item", systemImage: "plus")
+                        }
+                    }
+                }
+            }
+        }
+        .listStyle(InsetGroupedListStyle())
+    }
+    var addProjectToolBarITem: some ToolbarContent{
+        ToolbarItem(placement: .navigationBarTrailing){
+            if showClosedProjects == false{
+                Button(action: addProject){
+                    if UIAccessibility.isVoiceOverRunning{
+                        Text("Add Project")
+                    }else{
+                        Label("Add Project", systemImage: "plus")
+                    }
+                }
+            }
+        }
+    }
+    var sortProjectToolBarItem: some ToolbarContent{
+        ToolbarItem(placement: .navigationBarLeading){
+            Button{
+                showingSortOrder.toggle()
+            } label: {
+                Label("Sort", systemImage: "arrow.up.arrow.down")
+            }
+        }
+    }
     
     init(showClosedProjects: Bool) {
         self.showClosedProjects = showClosedProjects
@@ -34,67 +79,13 @@ struct ProjectView: View {
                     Text("There's nothing here right now.")
                         .foregroundColor(.secondary)
                 }else{
-                    List{
-                        ForEach(projects.wrappedValue){ project in
-                            Section(header: ProjectHeaderView(project: project)){
-                                ForEach(items(for: project)) { item in
-                                    ItemRowView(project: project, item: item)
-                                }
-                                .onDelete { offsets in
-                                    let allItems = items(for: project)
-                                    
-                                    for offset in offsets{
-                                        let item = allItems[offset]
-                                        dataController.delete(item)
-                                    }
-                                    dataController.save()
-                                }
-                                
-                                if showClosedProjects == false{
-                                    Button{
-                                        withAnimation {
-                                            let item = Item(context: managedObjectContext)
-                                            item.project = project
-                                            item.creationDate = Date()
-                                            dataController.save()
-                                        }
-                                    } label:{
-                                        Label("Add New Item", systemImage: "plus")
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    .listStyle(InsetGroupedListStyle())
+                    projectsList
                 }
             }
             .navigationTitle(showClosedProjects ? "Closed Projects" : "Open Projects")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing){
-                    if showClosedProjects == false{
-                        Button {
-                            withAnimation{
-                                let project = Project(context: managedObjectContext)
-                                project.closed = false
-                                project.creationDate = Date()
-                                dataController.save()
-                            }
-                        } label: {
-                            if UIAccessibility.isVoiceOverRunning{
-                                Text("Add Project")
-                            }else{
-                                Label("Add Project", systemImage: "plus")
-                            }
-                        }
-                    }
-                }
-                ToolbarItem(placement: .navigationBarLeading){
-                    Button{
-                        showingSortOrder.toggle()
-                    } label: {
-                        Label("Sort", systemImage: "arrow.up.arrow.down")
-                    }
-                }
+                addProjectToolBarITem
+                sortProjectToolBarItem
             }
             .actionSheet(isPresented: $showingSortOrder){
                 ActionSheet(title: Text("Sort items"), message: nil, buttons: [
@@ -115,6 +106,34 @@ struct ProjectView: View {
             return project.projectItems.sorted (by: \Item.itemCreationDate )
         default:
             return project.projectItemsDefaultSorted
+        }
+    }
+    
+    func addItem(to project: Project){
+        withAnimation {
+            let item = Item(context: managedObjectContext)
+            item.project = project
+            item.creationDate = Date()
+            dataController.save()
+        }
+    }
+    
+    func delete(_ offsets: IndexSet, from project: Project){
+        let allItems = items(for: project)
+        
+        for offset in offsets{
+            let item = allItems[offset]
+            dataController.delete(item)
+        }
+        dataController.save()
+    }
+    
+    func addProject(){
+        withAnimation{
+            let project = Project(context: managedObjectContext)
+            project.closed = false
+            project.creationDate = Date()
+            dataController.save()
         }
     }
 }

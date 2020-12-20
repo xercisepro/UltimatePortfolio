@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,8 @@
 		3E389BD52552064C009401EE /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E389BD42552064C009401EE /* CloudKit.framework */; };
 		3E389BD725521309009401EE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E389BD625521309009401EE /* HomeView.swift */; };
 		3E389BDB25521415009401EE /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E389BDA25521415009401EE /* ProjectView.swift */; };
+		3E58FD78258FCB76006142A6 /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E58FD77258FCB76006142A6 /* ItemListView.swift */; };
+		3E58FD7E258FD5FF006142A6 /* ProjectSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E58FD7D258FD5FF006142A6 /* ProjectSummaryView.swift */; };
 		3E6C3F0A2561F7D50074CA1C /* EditProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C3F092561F7D50074CA1C /* EditProjectView.swift */; };
 		3E7DC2672565CBB200E6F50A /* Sequence-Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7DC2662565CBB200E6F50A /* Sequence-Sorting.swift */; };
 		3E92D52C256C5ED3004585D4 /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E92D52B256C5ED3004585D4 /* Bundle-Decodable.swift */; };
@@ -49,6 +51,8 @@
 		3E389BD42552064C009401EE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		3E389BD625521309009401EE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		3E389BDA25521415009401EE /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
+		3E58FD77258FCB76006142A6 /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
+		3E58FD7D258FD5FF006142A6 /* ProjectSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSummaryView.swift; sourceTree = "<group>"; };
 		3E6C3F092561F7D50074CA1C /* EditProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProjectView.swift; sourceTree = "<group>"; };
 		3E7DC2662565CBB200E6F50A /* Sequence-Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence-Sorting.swift"; sourceTree = "<group>"; };
 		3E92D52B256C5ED3004585D4 /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
@@ -120,6 +124,8 @@
 				3EE424EB255513F500C62833 /* Item-CoreDataHelpers.swift */,
 				3EE424EE2555158D00C62833 /* Project-CoreDataHelpers.swift */,
 				3E389BD625521309009401EE /* HomeView.swift */,
+				3E58FD7D258FD5FF006142A6 /* ProjectSummaryView.swift */,
+				3E58FD77258FCB76006142A6 /* ItemListView.swift */,
 				3E966A7125783DFD001478CF /* Localizable.strings */,
 				3E966A7525783F05001478CF /* Localizable.stringsdict */,
 				3E365640256B689F00E79B8D /* SelectSomethingView.swift */,
@@ -176,7 +182,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1210;
-				LastUpgradeCheck = 1210;
+				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					3E389BB62551F1B9009401EE = {
 						CreatedOnToolsVersion = 12.1;
@@ -184,7 +190,7 @@
 				};
 			};
 			buildConfigurationList = 3E389BB22551F1B9009401EE /* Build configuration list for PBXProject "UltimatePortfolio" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -224,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E389BDB25521415009401EE /* ProjectView.swift in Sources */,
+				3E58FD7E258FD5FF006142A6 /* ProjectSummaryView.swift in Sources */,
 				3EB4FD79255A0E0500B0D019 /* ProjectHeaderView.swift in Sources */,
 				3E92D535256C6AE5004585D4 /* AwardsView.swift in Sources */,
 				3E389BCC2551F914009401EE /* Main.xcdatamodeld in Sources */,
@@ -238,6 +245,7 @@
 				3EB4FD762559FDA600B0D019 /* Binding-OnChange.swift in Sources */,
 				3E7DC2672565CBB200E6F50A /* Sequence-Sorting.swift in Sources */,
 				3E92D52C256C5ED3004585D4 /* Bundle-Decodable.swift in Sources */,
+				3E58FD78258FCB76006142A6 /* ItemListView.swift in Sources */,
 				3E389BD725521309009401EE /* HomeView.swift in Sources */,
 				3E389BBB2551F1B9009401EE /* UltimatePortfolioApp.swift in Sources */,
 				3EE424EC255513F500C62833 /* Item-CoreDataHelpers.swift in Sources */,
@@ -282,6 +290,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -343,6 +352,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
