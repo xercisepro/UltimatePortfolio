@@ -18,13 +18,22 @@ struct HomeView: View {
     
     @EnvironmentObject var dataController: DataController
     
-    @FetchRequest(entity: Project.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Project.title, ascending: true)], predicate: NSPredicate(format: "closed = false")) var projects: FetchedResults<Project>
+    @FetchRequest(entity: Project.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Project.title, ascending: true)], predicate: NSPredicate(format: "closed = false"))
+    var projects: FetchedResults<Project>
     
     //Custom Initialiser to get the items for display as we are limiting the amount requested and hence composing the request
     
     init() {
         let request: NSFetchRequest<Item> = Item.fetchRequest()
-        request.predicate = NSPredicate(format: "completed = false")
+        
+        //One way to do it
+        //request.predicate = NSPredicate(format: "completed = false AND project.closed = false")
+        
+        //Or compound Predicate for readibility
+        let completedPredicate = NSPredicate(format: "completed = false")
+        let openPredicate = NSPredicate(format: "project.closed = false")
+        let compoundPredicate = NSCompoundPredicate(type: .and, subpredicates: [completedPredicate, openPredicate])
+        request.predicate = compoundPredicate
         
         request.sortDescriptors = [
             NSSortDescriptor(keyPath: \Item.priority, ascending: false)
@@ -38,13 +47,7 @@ struct HomeView: View {
     var body: some View{
         NavigationView{
             
-            //For testing
-            /*VStack{
-                Button("Add Data"){
-                    dataController.deleteAll()
-                    try? dataController.createSampleData()
-                }
-            }*/
+            
             
             ScrollView{
                 VStack(alignment: .leading){
@@ -65,6 +68,13 @@ struct HomeView: View {
             }
             .background(Color.systemGroupedBackground.ignoresSafeArea())
             .navigationTitle("Home")
+            //For testing
+            .toolbar{
+                Button("Add Data"){
+                    dataController.deleteAll()
+                    try? dataController.createSampleData()
+                }
+            }
         }
     }
 }
