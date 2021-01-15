@@ -3,4 +3,70 @@
    uuid = "046B3F90-1523-4176-9E92-AB4A79C599E1"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "59EF21FB-E228-43E6-BEDA-BDEF284C6E93"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UltimatePortfolio/EditProjectView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "59EF21FB-E228-43E6-BEDA-BDEF284C6E93 - 5f9229ed6da8c2b7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "UltimatePortfolio.EditProjectView.body.getter : some"
+                  moduleName = "UltimatePortfolio"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/markham/Documents/Development/Swift/UltimatePortfolio/UltimatePortfolio/EditProjectView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "1007">
+               </Location>
+               <Location
+                  uuid = "59EF21FB-E228-43E6-BEDA-BDEF284C6E93 - 6e68257e1b9a2969"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; SwiftUI.Alert in UltimatePortfolio.EditProjectView.body.getter : some"
+                  moduleName = "UltimatePortfolio"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/markham/Documents/Development/Swift/UltimatePortfolio/UltimatePortfolio/EditProjectView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "95">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2B61ADA2-24C2-4F53-8188-5C232199F352"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UltimatePortfolio/Bundle-Decodable.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "decode(_:from:dateDecodingStrategy:keyDecodingStrategy:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

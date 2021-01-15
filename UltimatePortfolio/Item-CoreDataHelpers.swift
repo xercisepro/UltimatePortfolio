@@ -7,24 +7,20 @@
 
 import Foundation
 
-//Used to support optional values
-extension Item{
-    var itemTitle: String{
+// Used to support optional values
+extension Item {
+    var itemTitle: String {
         title ?? NSLocalizedString("New Item", comment: "Create a new item")
     }
-    
-    var itemDetail: String{
+    var itemDetail: String {
         detail ?? ""
     }
-    
-    var itemCreationDate: Date{
+    var itemCreationDate: Date {
         creationDate ?? Date()
     }
-    
-    static var example: Item{
+    static var example: Item {
         let controller = DataController(inMemory: true)
         let viewContext = controller.container.viewContext
-        
         let item = Item(context: viewContext)
         item.title = "Example Item"
         item.detail = "This is an example item"
@@ -33,10 +29,8 @@ extension Item{
         return item
     }
 }
-
-extension Item{
+extension Item {
     enum SortOrder {
         case optimised, title, creationDate
     }
 }
-

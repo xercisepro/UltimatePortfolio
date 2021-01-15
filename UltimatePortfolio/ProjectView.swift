@@ -10,31 +10,26 @@ import SwiftUI
 struct ProjectView: View {
     static let openTag: String? = "Open"
     static let closedTag: String? = "Closed"
-    
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
-    
     @State private var showingSortOrder = false
     @State private var sortOrder = Item.SortOrder.optimised
-    
     let showClosedProjects: Bool
-    
     let projects: FetchRequest<Project>
-    var projectsList: some View{
-        List{
-            ForEach(projects.wrappedValue){ project in
-                Section(header: ProjectHeaderView(project: project)){
+    var projectsList: some View {
+        List {
+            ForEach(projects.wrappedValue) { project in
+                Section(header: ProjectHeaderView(project: project)) {
                     ForEach(items(for: project)) { item in
                         ItemRowView(project: project, item: item)
                     }
                     .onDelete { offsets in
                         delete(offsets, from: project)
                     }
-                    
-                    if showClosedProjects == false{
-                        Button{
+                    if showClosedProjects == false {
+                        Button {
                             addItem(to: project)
-                        } label:{
+                        } label: {
                             Label("Add New Item", systemImage: "plus")
                         }
                     }
@@ -43,42 +38,44 @@ struct ProjectView: View {
         }
         .listStyle(InsetGroupedListStyle())
     }
-    var addProjectToolBarITem: some ToolbarContent{
-        ToolbarItem(placement: .navigationBarTrailing){
-            if showClosedProjects == false{
-                Button(action: addProject){
-                    if UIAccessibility.isVoiceOverRunning{
+    var addProjectToolBarITem: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            if showClosedProjects == false {
+                Button(action: addProject) {
+                    if UIAccessibility.isVoiceOverRunning {
                         Text("Add Project")
-                    }else{
+                    } else {
                         Label("Add Project", systemImage: "plus")
                     }
                 }
             }
         }
     }
-    var sortProjectToolBarItem: some ToolbarContent{
-        ToolbarItem(placement: .navigationBarLeading){
-            Button{
+    var sortProjectToolBarItem: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarLeading) {
+            Button {
                 showingSortOrder.toggle()
             } label: {
                 Label("Sort", systemImage: "arrow.up.arrow.down")
             }
         }
     }
-    
     init(showClosedProjects: Bool) {
         self.showClosedProjects = showClosedProjects
-        
-        projects = FetchRequest<Project>(entity: Project.entity(), sortDescriptors: [ NSSortDescriptor(keyPath: \Project.creationDate, ascending: false)], predicate: NSPredicate(format: "closed = %d", showClosedProjects))
+        projects = FetchRequest<Project>(
+            entity: Project.entity(),
+            sortDescriptors: [ NSSortDescriptor(keyPath: \Project.creationDate, ascending: false)],
+            predicate: NSPredicate(format: "closed = %d",
+            showClosedProjects)
+        )
     }
-    
     var body: some View {
-        NavigationView{
-            Group{
-                if projects.wrappedValue.count == 0{
+        NavigationView {
+            Group {
+                if projects.wrappedValue.count == 0 {
                     Text("There's nothing here right now.")
                         .foregroundColor(.secondary)
-                }else{
+                } else {
                     projectsList
                 }
             }
@@ -87,7 +84,7 @@ struct ProjectView: View {
                 addProjectToolBarITem
                 sortProjectToolBarItem
             }
-            .actionSheet(isPresented: $showingSortOrder){
+            .actionSheet(isPresented: $showingSortOrder) {
                 ActionSheet(title: Text("Sort items"), message: nil, buttons: [
                     .default(Text("Optimised")) { sortOrder = .optimised },
                     .default(Text("Creation Date")) { sortOrder = .creationDate},
@@ -97,19 +94,17 @@ struct ProjectView: View {
             SelectSomethingView()
         }
     }
-    
     func items(for project: Project) -> [Item] {
         switch sortOrder {
         case .title:
-            return project.projectItems.sorted (by: \Item.itemTitle )
+            return project.projectItems.sorted(by: \Item.itemTitle )
         case .creationDate:
-            return project.projectItems.sorted (by: \Item.itemCreationDate )
+            return project.projectItems.sorted(by: \Item.itemCreationDate )
         default:
             return project.projectItemsDefaultSorted
         }
     }
-    
-    func addItem(to project: Project){
+    func addItem(to project: Project) {
         withAnimation {
             let item = Item(context: managedObjectContext)
             item.project = project
@@ -117,19 +112,16 @@ struct ProjectView: View {
             dataController.save()
         }
     }
-    
-    func delete(_ offsets: IndexSet, from project: Project){
+    func delete(_ offsets: IndexSet, from project: Project) {
         let allItems = items(for: project)
-        
-        for offset in offsets{
+        for offset in offsets {
             let item = allItems[offset]
             dataController.delete(item)
         }
         dataController.save()
     }
-    
-    func addProject(){
-        withAnimation{
+    func addProject() {
+        withAnimation {
             let project = Project(context: managedObjectContext)
             project.closed = false
             project.creationDate = Date()
@@ -140,7 +132,6 @@ struct ProjectView: View {
 
 struct ProjectView_Previews: PreviewProvider {
     static var dataController = DataController.preview
-    
     static var previews: some View {
         ProjectView(showClosedProjects: false)
             .environment(\.managedObjectContext, dataController.container.viewContext)
