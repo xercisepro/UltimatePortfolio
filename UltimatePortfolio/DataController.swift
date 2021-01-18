@@ -8,13 +8,22 @@
 import CoreData
 import SwiftUI
 
+/// An environment singleton responsible for managing our Core Data stack, including handling saving,
+/// counting fetch requests, tracking awards, and dealing with sample data.
 class DataController: ObservableObject {
+    /// The lone Cloudkit contrainer used to store all our data.
     let container: NSPersistentContainer
+    /// Initializes a data controller, either in memory (for temporary use such as testing and previewing
+    /// or on permanent storage (for use in regular app runs.)
+    ///
+    /// Defaults to permanent storage.
+    /// - Parameter inMemory: Whether to store this data in temporary memory or not.
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Main")
         if inMemory {
-            // written to a deadzone
-            // this is a database in RAM only
+            // For testing and previewing purposes, we create a
+            // temporary, in-memory database by writing to /dev/null (deadzone)
+            // so our data is destroyed after the app finishes running.
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
         }
         container.loadPersistentStores(completionHandler: { _, error in
@@ -31,6 +40,8 @@ class DataController: ObservableObject {
         } catch { fatalError("Fatal error creating preview: \(error.localizedDescription)")}
         return dataController
     }()
+    /// Creates example projects and items to make manual testing easier
+    /// - Throws: An NSError sent from calling save() on the NSManagedObjectContext.
     func createSampleData() throws {
         // current live data
         let viewContext = container.viewContext
@@ -51,6 +62,8 @@ class DataController: ObservableObject {
         }
         try viewContext.save()// write to perminent storage
     }
+    /// Saves our Core Data context iff there are changes. This silently ignores
+    /// any errors caused by saving. but this should be fine because all our attributes are optional.
     func save() {
         if container.viewContext.hasChanges {
             try? container.viewContext.save()
@@ -76,16 +89,18 @@ class DataController: ObservableObject {
          confused where it should find the entity description*/
         switch award.criterion {
         case "items":
+            // returns true id they added a certain number of items
             let fetchRequest: NSFetchRequest<Item> = NSFetchRequest(entityName: "Item")
             let awardCount = count(for: fetchRequest)
             return awardCount >= award.value
         case "complete":
+            // returns true if they completed a certain number of items
             let fetchRequest: NSFetchRequest<Item> = NSFetchRequest(entityName: "Item")
             fetchRequest.predicate = NSPredicate(format: "completed = true")
             let awardCount = count(for: fetchRequest)
             return awardCount >= award.value
         default:
-            // fatalError("Unknown award criterion \(award.criterion)")
+            // an unknown award criterion, this should never be allowed
             return false
         }
     }

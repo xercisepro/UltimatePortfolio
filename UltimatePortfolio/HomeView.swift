@@ -24,6 +24,7 @@ struct HomeView: View {
      limiting the amount requested and hence composing the request
     */
     init() {
+        // Construct a fetch request to show the top highest-priority, incomplete items from open projects.
         let request: NSFetchRequest<Item> = Item.fetchRequest()
         // One way to do it
         // Request.predicate = NSPredicate(format: "completed = false AND project.closed = false")
