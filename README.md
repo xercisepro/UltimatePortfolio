@@ -2,9 +2,10 @@
 
 <p align="center">
     <img src="https://img.shields.io/badge/iOS-12.0+-blue.svg" />
-    <img src="https://img.shields.io/badge/Swift-5.0-brightgreen.svg" />
+    <img src="https://img.shields.io/badge/Interface-SwiftUI-lightgrey.svg" />
+    <img src="https://img.shields.io/badge/Swift-5.3-lightgrey.svg" />
     <a href="https://www.linkedin.com/in/andrew-markham-66760920/">
-        <img src="https://img.shields.io/badge/Contact-@linkedin-lightgrey.svg?style=flat" alt="linkedin: @andrew"/>
+        <img src="https://img.shields.io/badge/Contact-@linkedin-brightgreen.svg?style=flat" alt="linkedin: @andrew"/>
     </a>
 </p>
 
