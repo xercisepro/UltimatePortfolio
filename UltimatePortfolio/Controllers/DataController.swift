@@ -19,7 +19,7 @@ class DataController: ObservableObject {
     /// Defaults to permanent storage.
     /// - Parameter inMemory: Whether to store this data in temporary memory or not.
     init(inMemory: Bool = false) {
-        container = NSPersistentCloudKitContainer(name: "Main")
+        container = NSPersistentCloudKitContainer(name: "Main", managedObjectModel: Self.model)
         if inMemory {
             // For testing and previewing purposes, we create a
             // temporary, in-memory database by writing to /dev/null (deadzone)
@@ -39,6 +39,20 @@ class DataController: ObservableObject {
             try dataController.createSampleData()
         } catch { fatalError("Fatal error creating preview: \(error.localizedDescription)")}
         return dataController
+    }()
+    /// Creates and loads central model file at Build time
+    /// Required as unit testing using BaseTestCase creates its own instance of a DataController
+    /// which in conjunction with the instance created by the main app confuses the app
+    /// as there are > 1 instance of each entitiy
+    /// XCODE 12.4
+    static let model: NSManagedObjectModel = {
+        guard let url = Bundle.main.url(forResource: "Main", withExtension: "momd") else {
+            fatalError("Failed to locate model file url.")
+        }
+        guard let managedObjectModel = NSManagedObjectModel(contentsOf: url) else {
+            fatalError("Failed to locate model file")
+        }
+        return managedObjectModel
     }()
     /// Creates example projects and items to make manual testing easier
     /// - Throws: An NSError sent from calling save() on the NSManagedObjectContext.
