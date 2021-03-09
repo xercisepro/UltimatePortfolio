@@ -6,26 +6,22 @@
 //
 
 import XCTest
+@testable import UltimatePortfolio
 
 class PerformanceTests: BaseTestCase {
+    func testAwardCalculationPerformance() throws {
+        // Create a significant amount of test data
+        for _ in 1...100 {
+            try dataController.createSampleData()
+        }
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+        // Simulate lots of awards to check
+        // Make one big single array
+        let awards = Array(repeating: Award.allAwards, count: 25).joined()
+        XCTAssertEqual(awards.count, 500, "This checks the awards count is constant. Change this if you add awards." )
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        measure {
+            _ = awards.filter(dataController.hasEarned)
         }
     }
 

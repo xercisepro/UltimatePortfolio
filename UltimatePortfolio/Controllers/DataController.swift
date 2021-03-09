@@ -30,6 +30,14 @@ class DataController: ObservableObject {
             if let error = error {
                 fatalError("Fatal error loading store: \(error.localizedDescription)")
             }
+
+            #if DEBUG
+            if CommandLine.arguments.contains("enable-testing"){
+                self.deleteAll()
+                // Turn off animations for UITesting to ensure tests are performed as fast as possible
+                UIView.setAnimationsEnabled(false)
+            }
+            #endif
         })
     }
     static var preview: DataController = {
