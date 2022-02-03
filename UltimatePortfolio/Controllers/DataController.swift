@@ -32,7 +32,7 @@ class DataController: ObservableObject {
             }
 
             #if DEBUG
-            if CommandLine.arguments.contains("enable-testing"){
+            if CommandLine.arguments.contains("enable-testing") {
                 self.deleteAll()
                 // Turn off animations for UITesting to ensure tests are performed as fast as possible
                 UIView.setAnimationsEnabled(false)
