@@ -35,6 +35,7 @@
 		3E966A7325783F05001478CF /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 3E966A7525783F05001478CF /* Localizable.stringsdict */; };
 		3E966A7925783FFC001478CF /* Awards.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E966A7B25783FFC001478CF /* Awards.json */; };
 		3E97959F25F7150600DD03BF /* UltimatePortfolioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E97959E25F7150600DD03BF /* UltimatePortfolioUITests.swift */; };
+		3EABF1F027C07EB20088ED79 /* UnlockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABF1EF27C07EB10088ED79 /* UnlockManager.swift */; };
 		3EB4FD6C2559E58600B0D019 /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4FD6B2559E58600B0D019 /* EditItemView.swift */; };
 		3EB4FD6F2559F66800B0D019 /* ItemRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4FD6E2559F66800B0D019 /* ItemRowView.swift */; };
 		3EB4FD762559FDA600B0D019 /* Binding-OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4FD752559FDA600B0D019 /* Binding-OnChange.swift */; };
@@ -105,6 +106,8 @@
 		3E97959C25F7150600DD03BF /* UltimatePortfolioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UltimatePortfolioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E97959E25F7150600DD03BF /* UltimatePortfolioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UltimatePortfolioUITests.swift; sourceTree = "<group>"; };
 		3E9795A025F7150600DD03BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EABF1EF27C07EB10088ED79 /* UnlockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockManager.swift; sourceTree = "<group>"; };
+		3EABF1F127C081970088ED79 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		3EB4FD6B2559E58600B0D019 /* EditItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemView.swift; sourceTree = "<group>"; };
 		3EB4FD6E2559F66800B0D019 /* ItemRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRowView.swift; sourceTree = "<group>"; };
 		3EB4FD752559FDA600B0D019 /* Binding-OnChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding-OnChange.swift"; sourceTree = "<group>"; };
@@ -227,6 +230,8 @@
 			isa = PBXGroup;
 			children = (
 				3E389BCE2551FC5D009401EE /* DataController.swift */,
+				3EABF1EF27C07EB10088ED79 /* UnlockManager.swift */,
+				3EABF1F127C081970088ED79 /* Configuration.storekit */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -481,6 +486,7 @@
 				3E92D535256C6AE5004585D4 /* AwardsView.swift in Sources */,
 				3E389BCC2551F914009401EE /* Main.xcdatamodeld in Sources */,
 				3ED05D3A27ABA192002A6876 /* HomeViewModel.swift in Sources */,
+				3EABF1F027C07EB20088ED79 /* UnlockManager.swift in Sources */,
 				3EE424EF2555158D00C62833 /* Project-CoreDataHelpers.swift in Sources */,
 				3ECC0E55256CAB1700B757ED /* Color_Additions.swift in Sources */,
 				3E6C3F0A2561F7D50074CA1C /* EditProjectView.swift in Sources */,
