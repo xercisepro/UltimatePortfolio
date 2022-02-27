@@ -100,7 +100,7 @@ class UnlockManager: NSObject, ObservableObject, SKPaymentTransactionObserver, S
                 case .failed:
                     if let product = loadedProducts.first {
                         self.requestState = .loaded(product)
-                    }else{
+                    } else {
                         self.requestState = .failed(transaction.error)
                     }
                     queue.finishTransaction(transaction)
@@ -116,7 +116,7 @@ class UnlockManager: NSObject, ObservableObject, SKPaymentTransactionObserver, S
     }
 
     // Method to request payment for a IAP product
-    func buy(product: SKProduct){
+    func buy(product: SKProduct) {
         let payment = SKPayment(product: product)
         SKPaymentQueue.default().add(payment)
     }

@@ -96,6 +96,9 @@ struct ProjectView: View {
             }
             SelectSomethingView()
         }
+        .sheet(isPresented: $viewModel.showingUnlockView) {
+            UnlockView()
+        }
     }
 }
 
