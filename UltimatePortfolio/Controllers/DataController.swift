@@ -266,3 +266,21 @@ extension DataController {
         }
     }
 }
+
+extension DataController {
+    /// Functionality  for adding projects has been refactored here so that it is available for quick action
+    /// usage in sceneDelegare
+
+@discardableResult func addProject() -> Bool {
+        let canCreate = fullVersionUnlocked || count(for: Project.fetchRequest()) < 3
+        if canCreate {
+            let project = Project(context: container.viewContext)
+            project.closed = false
+            project.creationDate = Date()
+            save()
+            return true
+        } else {
+            return false
+        }
+    }
+}

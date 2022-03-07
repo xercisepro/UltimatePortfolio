@@ -12,6 +12,9 @@ struct UltimatePortfolioApp: App {
     @StateObject var dataController: DataController
     @StateObject var unlockManager: UnlockManager
 
+    // A wrapper to enable appDelegate/sceneDelegate functionality when needed
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
     init() {
         let dataController = DataController()
         let unlockManager = UnlockManager(dataController: dataController)

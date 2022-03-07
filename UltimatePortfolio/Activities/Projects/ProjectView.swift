@@ -13,10 +13,6 @@ struct ProjectView: View {
     @StateObject var viewModel: ViewModel
     @State private var showingSortOrder = false
 
-    init(dataController: DataController, showClosedProjects: Bool) {
-        let viewModel = ViewModel(dataController: dataController, showClosedProjects: showClosedProjects)
-        _viewModel = StateObject(wrappedValue: viewModel)
-    }
     var projectsList: some View {
         List {
             ForEach(viewModel.projects) { project in
@@ -99,6 +95,11 @@ struct ProjectView: View {
         .sheet(isPresented: $viewModel.showingUnlockView) {
             UnlockView()
         }
+    }
+
+    init(dataController: DataController, showClosedProjects: Bool) {
+        let viewModel = ViewModel(dataController: dataController, showClosedProjects: showClosedProjects)
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
 }
 
