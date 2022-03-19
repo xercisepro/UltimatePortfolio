@@ -12,6 +12,10 @@ struct ContentView: View {
     @SceneStorage("selectedView") var selectedView: String?// Optional String so make sure the property is too
     // additonally for this make sure you are supporting scenes by using @SceneStorage instead of @appStorage
     @EnvironmentObject var dataController: DataController
+
+    // shortcut activity magic key
+    private let newProjectActivity = "com.xercisepro.newProject"
+
     var body: some View {
         TabView(selection: $selectedView) {
             HomeView(dataController: dataController)
@@ -39,7 +43,13 @@ struct ContentView: View {
                     Text("Awards")
                 }
         }
-        .onContinueUserActivity(CSSearchableItemActionType, perform: moveToHome)
+        .onContinueUserActivity(CSSearchableItemActionType, perform: moveToHome) // spotlight activity
+        .onContinueUserActivity(newProjectActivity, perform: createProject) // shortcut activity
+        .userActivity(newProjectActivity, { activity in
+            activity.isEligibleForPrediction = true // this allows the OS prompt this based on user behaviour
+            activity.title = "New Project"
+        })
+
         .onOpenURL(perform: openURL)
     }
 
@@ -49,7 +59,13 @@ struct ContentView: View {
 
     func openURL(_ url: URL) {
         selectedView = ProjectView.openTag
-        _ = dataController.addProject()
+        dataController.addProject()
+    }
+
+    func createProject(_ userActivity: NSUserActivity) {
+        // Function that is called by the OS shortcut feature for the app
+        selectedView = ProjectView.openTag
+        dataController.addProject()
     }
 }
 
