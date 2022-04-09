@@ -55,15 +55,16 @@ struct PortfolioWidgetEntryView: View {
 }
 
 @main
-struct PortfolioWidget: Widget {
+struct SimplePortfolioWidget: Widget {
     let kind: String = "PortfolioWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             PortfolioWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Up next…")
+        .description("Your #1 top-priority item.")
+        .supportedFamilies([.systemSmall]) // Limits the Widget size option to small
     }
 }
 
