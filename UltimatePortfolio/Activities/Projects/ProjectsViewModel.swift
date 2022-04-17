@@ -50,7 +50,12 @@ extension ProjectView {
         }
 
         func addItem(to project: Project) {
+            /// Adds an item to the project and stores the instance in coredata
             let item = Item(context: dataController.container.viewContext)
+            // The first two defaults are required to keep coredata happy and ensure
+            // the item shows immediately upon creation.
+            item.priority = 2
+            item.completed = false
             item.project = project
             item.creationDate = Date()
             dataController.save()
