@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CloudKit
 
 extension Project {
     static let colors = [
@@ -72,5 +73,32 @@ extension Project {
         project.closed = true
         project.creationDate = Date()
         return project
+    }
+
+    func prepareCloudRecords() -> [CKRecord] {
+        /// Setup data and data strucutre for upload to cloudkit
+        let parentName = objectID.uriRepresentation().absoluteString
+        let parentID = CKRecord.ID(recordName: parentName)
+        // Equivalent of NSManagedObject
+        let parent = CKRecord(recordType: "Project", recordID: parentID)
+        parent["title"] = projectTitle
+        parent["detail"] = projectDetail
+        parent["owner"] = "XercisePro"
+        parent["closed"] = closed
+
+        var records = projectItemsDefaultSorted.map { item -> CKRecord in
+            let childName = item.objectID.uriRepresentation().absoluteString
+            let childID = CKRecord.ID(recordName: childName)
+            let child = CKRecord(recordType: "Item", recordID: childID)
+            child["title"] = item.itemTitle
+            child["detail"] = item.itemDetail
+            child["completed"] = item.completed
+            // Link each item to the project and set a cascading delete
+            child["project"] =  CKRecord.Reference(recordID: parentID, action: .deleteSelf)
+            return child
+        }
+
+        records.append(parent)
+        return records
     }
 }
