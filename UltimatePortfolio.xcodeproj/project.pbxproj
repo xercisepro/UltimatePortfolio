@@ -71,6 +71,11 @@
 		3EE2AB5027EEF3790011D487 /* Item-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE424EB255513F500C62833 /* Item-CoreDataHelpers.swift */; };
 		3EE424EC255513F500C62833 /* Item-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE424EB255513F500C62833 /* Item-CoreDataHelpers.swift */; };
 		3EE424EF2555158D00C62833 /* Project-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE424EE2555158D00C62833 /* Project-CoreDataHelpers.swift */; };
+		3EEE1C382827516B00E99DE9 /* SharedProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEE1C372827516B00E99DE9 /* SharedProject.swift */; };
+		3EEE1C3A2827521000E99DE9 /* SharedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEE1C392827521000E99DE9 /* SharedItem.swift */; };
+		3EEE1C3C282752DB00E99DE9 /* LoadStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEE1C3B282752DB00E99DE9 /* LoadStates.swift */; };
+		3EEE1C3F2827539900E99DE9 /* SharedProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEE1C3E2827539900E99DE9 /* SharedProjectsView.swift */; };
+		3EEE1C41282764C800E99DE9 /* SharedItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEE1C40282764C800E99DE9 /* SharedItemsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,6 +188,11 @@
 		3EE2AB5127EEF5200011D487 /* PortfolioWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PortfolioWidgetExtension.entitlements; sourceTree = "<group>"; };
 		3EE424EB255513F500C62833 /* Item-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		3EE424EE2555158D00C62833 /* Project-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project-CoreDataHelpers.swift"; sourceTree = "<group>"; };
+		3EEE1C372827516B00E99DE9 /* SharedProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedProject.swift; sourceTree = "<group>"; };
+		3EEE1C392827521000E99DE9 /* SharedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedItem.swift; sourceTree = "<group>"; };
+		3EEE1C3B282752DB00E99DE9 /* LoadStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadStates.swift; sourceTree = "<group>"; };
+		3EEE1C3E2827539900E99DE9 /* SharedProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedProjectsView.swift; sourceTree = "<group>"; };
+		3EEE1C40282764C800E99DE9 /* SharedItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedItemsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -368,6 +378,7 @@
 				3EA532DC25B7987F00419A58 /* Home */,
 				3EA532DD25B7988900419A58 /* Projects */,
 				3EA532DE25B7989100419A58 /* Awards */,
+				3EEE1C3D2827532700E99DE9 /* Community */,
 			);
 			path = Activities;
 			sourceTree = "<group>";
@@ -428,6 +439,18 @@
 				3EE2AB3A27EEE8400011D487 /* Info.plist */,
 			);
 			path = PortfolioWidget;
+			sourceTree = "<group>";
+		};
+		3EEE1C3D2827532700E99DE9 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				3EEE1C3E2827539900E99DE9 /* SharedProjectsView.swift */,
+				3EEE1C40282764C800E99DE9 /* SharedItemsView.swift */,
+				3EEE1C372827516B00E99DE9 /* SharedProject.swift */,
+				3EEE1C392827521000E99DE9 /* SharedItem.swift */,
+				3EEE1C3B282752DB00E99DE9 /* LoadStates.swift */,
+			);
+			path = Community;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -624,8 +647,11 @@
 				3E86F6B627D5715300210605 /* SceneDelegate.swift in Sources */,
 				3EE2AB4A27EEEE080011D487 /* DataController-Awards.swift in Sources */,
 				3E001A3B27CC1CCC002DC980 /* PurchaseButton.swift in Sources */,
+				3EEE1C3A2827521000E99DE9 /* SharedItem.swift in Sources */,
 				3EB4FD79255A0E0500B0D019 /* ProjectHeaderView.swift in Sources */,
 				3E001A3D27CC1EEE002DC980 /* ProductView.swift in Sources */,
+				3EEE1C3C282752DB00E99DE9 /* LoadStates.swift in Sources */,
+				3EEE1C3F2827539900E99DE9 /* SharedProjectsView.swift in Sources */,
 				3E92D535256C6AE5004585D4 /* AwardsView.swift in Sources */,
 				3E389BCC2551F914009401EE /* Main.xcdatamodeld in Sources */,
 				3ED05D3A27ABA192002A6876 /* HomeViewModel.swift in Sources */,
@@ -634,7 +660,9 @@
 				3ECC0E55256CAB1700B757ED /* Color_Additions.swift in Sources */,
 				3E6C3F0A2561F7D50074CA1C /* EditProjectView.swift in Sources */,
 				3EE2AB4627EEEB1B0011D487 /* DataController-Reminders.swift in Sources */,
+				3EEE1C382827516B00E99DE9 /* SharedProject.swift in Sources */,
 				3E389BCF2551FC5D009401EE /* DataController.swift in Sources */,
+				3EEE1C41282764C800E99DE9 /* SharedItemsView.swift in Sources */,
 				3E365641256B689F00E79B8D /* SelectSomethingView.swift in Sources */,
 				3E92D532256C68D2004585D4 /* Award.swift in Sources */,
 				3EB4FD6F2559F66800B0D019 /* ItemRowView.swift in Sources */,

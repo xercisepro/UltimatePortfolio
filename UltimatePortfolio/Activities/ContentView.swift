@@ -42,6 +42,12 @@ struct ContentView: View {
                     Image(systemName: "rosette")
                     Text("Awards")
                 }
+            SharedProjectsView()
+                .tag(SharedProjectsView.tag)
+                .tabItem {
+                    Image(systemName: "person.3")
+                    Text("Community")
+                }
         }
         .onContinueUserActivity(CSSearchableItemActionType, perform: moveToHome) // spotlight activity
         .onContinueUserActivity(newProjectActivity, perform: createProject) // shortcut activity
