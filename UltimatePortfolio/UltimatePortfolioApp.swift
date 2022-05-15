@@ -21,6 +21,11 @@ struct UltimatePortfolioApp: App {
 
         _dataController = StateObject(wrappedValue: dataController)
         _unlockManager = StateObject(wrappedValue: unlockManager)
+
+        // Hardcoded user for test environment
+        #if targetEnvironment(simulator)
+        UserDefaults.standard.set("XercisePro", forKey: "username")
+        #endif
     }
     var body: some Scene {
         WindowGroup {

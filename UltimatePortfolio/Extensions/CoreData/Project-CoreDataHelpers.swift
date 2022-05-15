@@ -75,7 +75,7 @@ extension Project {
         return project
     }
 
-    func prepareCloudRecords() -> [CKRecord] {
+    func prepareCloudRecords(owner: String) -> [CKRecord] {
         /// Setup data and data strucutre for upload to cloudkit
         let parentName = objectID.uriRepresentation().absoluteString
         let parentID = CKRecord.ID(recordName: parentName)
@@ -83,7 +83,7 @@ extension Project {
         let parent = CKRecord(recordType: "Project", recordID: parentID)
         parent["title"] = projectTitle
         parent["detail"] = projectDetail
-        parent["owner"] = "XercisePro"
+        parent["owner"] = owner
         parent["closed"] = closed
 
         var records = projectItemsDefaultSorted.map { item -> CKRecord in

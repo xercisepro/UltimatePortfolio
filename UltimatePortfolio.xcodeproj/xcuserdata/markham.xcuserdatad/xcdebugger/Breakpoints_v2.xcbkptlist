@@ -39,16 +39,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D14B5292-ACF9-4FF7-A83E-3031BBB5DFEF"
+            uuid = "46D877BC-A71C-43C4-B3B4-C7E02D080430"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UltimatePortfolio/Activities/Community/SharedItemsView.swift"
+            filePath = "UltimatePortfolio/Activities/Projects/EditProjectView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "fetchSharedItems()"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "uploadToCloud()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
