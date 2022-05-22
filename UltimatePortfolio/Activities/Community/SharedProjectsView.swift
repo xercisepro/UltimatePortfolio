@@ -69,7 +69,7 @@ struct SharedProjectsView: View {
                 projects.append(sharedProject)
                 loadState = .success
             case let .failure(error):
-                print("error; \(error)")
+                print("error: \(error)")
             }
         }
 
@@ -83,7 +83,7 @@ struct SharedProjectsView: View {
                     loadState = .noResults
                 }
             case let .failure(error):
-                print("error; \(error)")
+                print("error: \(error)")
             }
         }
 

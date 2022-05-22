@@ -38,7 +38,8 @@ struct SignInView: View {
                             SignInWithAppleButton(onRequest: configureSignIn, onCompletion: completionSignIn)
                                 .frame(height: 44) // Stop it from takin up all the space available
                                 .signInWithAppleButtonStyle(colorScheme == .light ? .black: .white)
-                                // Used to implement different styles triggered with darkmode as it is not natively supported
+                                // Used to implement different styles triggered with darkmode
+                                // as it is not natively supported
 
                             Button("Cancel", action: close)
                                 .frame(maxWidth: .infinity)

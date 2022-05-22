@@ -71,6 +71,7 @@
 		3EE2AB5027EEF3790011D487 /* Item-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE424EB255513F500C62833 /* Item-CoreDataHelpers.swift */; };
 		3EE424EC255513F500C62833 /* Item-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE424EB255513F500C62833 /* Item-CoreDataHelpers.swift */; };
 		3EE424EF2555158D00C62833 /* Project-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE424EE2555158D00C62833 /* Project-CoreDataHelpers.swift */; };
+		3EE4B579283871400099AC5B /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4B578283871400099AC5B /* ChatMessage.swift */; };
 		3EEA883228308832004000B0 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEA883128308832004000B0 /* SignInView.swift */; };
 		3EEE1C382827516B00E99DE9 /* SharedProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEE1C372827516B00E99DE9 /* SharedProject.swift */; };
 		3EEE1C3A2827521000E99DE9 /* SharedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEE1C392827521000E99DE9 /* SharedItem.swift */; };
@@ -189,6 +190,7 @@
 		3EE2AB5127EEF5200011D487 /* PortfolioWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PortfolioWidgetExtension.entitlements; sourceTree = "<group>"; };
 		3EE424EB255513F500C62833 /* Item-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		3EE424EE2555158D00C62833 /* Project-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project-CoreDataHelpers.swift"; sourceTree = "<group>"; };
+		3EE4B578283871400099AC5B /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		3EEA883128308832004000B0 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		3EEE1C372827516B00E99DE9 /* SharedProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedProject.swift; sourceTree = "<group>"; };
 		3EEE1C392827521000E99DE9 /* SharedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedItem.swift; sourceTree = "<group>"; };
@@ -451,6 +453,7 @@
 				3EEE1C40282764C800E99DE9 /* SharedItemsView.swift */,
 				3EEE1C372827516B00E99DE9 /* SharedProject.swift */,
 				3EEE1C392827521000E99DE9 /* SharedItem.swift */,
+				3EE4B578283871400099AC5B /* ChatMessage.swift */,
 				3EEE1C3B282752DB00E99DE9 /* LoadStates.swift */,
 			);
 			path = Community;
@@ -684,6 +687,7 @@
 				3EE424EC255513F500C62833 /* Item-CoreDataHelpers.swift in Sources */,
 				3E001A3927CC1B4A002DC980 /* SKProduct-LocalizedPrice.swift in Sources */,
 				3E4A157226055794002B75AA /* ProjectsViewModel.swift in Sources */,
+				3EE4B579283871400099AC5B /* ChatMessage.swift in Sources */,
 				3EB4FD6C2559E58600B0D019 /* EditItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -829,7 +833,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -885,7 +889,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
