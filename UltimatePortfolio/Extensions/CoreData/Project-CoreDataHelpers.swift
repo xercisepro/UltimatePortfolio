@@ -101,4 +101,48 @@ extension Project {
         records.append(parent)
         return records
     }
+
+    func checkCloudStatus(_ completion: @escaping (Bool) -> Void) {
+        // fetch(withRecordID:) although looking like a better candidate function
+        // has a lower priority in icloud and hence not optimal performance wise
+
+        let name = objectID.uriRepresentation().absoluteString
+        let id = CKRecord.ID(recordName: name)
+        let operation = CKFetchRecordsOperation(recordIDs: [id])
+        operation.desiredKeys = ["recordID"]
+
+//      Network Failure Check Code
+//        operation.fetchRecordsResultBlock = { result in
+//            switch result {
+//            case .success:
+//                print( "Network Success")
+//
+//            case .failure:
+//                print("Network Failure")
+//            }
+//        }
+
+        operation.perRecordResultBlock = { record, result in
+            switch result {
+            case .success:
+                print("Record is in iCloud:\(record)")
+                completion(true)
+            case .failure:
+                // No record returned or System Failure with iCloud ie network
+                print("Record is not in iCloud")
+                completion(false)
+            }
+        }
+
+        // Code for < IOS 15
+//        operation.fetchRecordsCompletionBlock = { records, _ in
+//            if let records = records {
+//                completion(records.count == 1)
+//            } else {
+//                completion(false)
+//            }
+//        }
+
+        CKContainer.default().publicCloudDatabase.add(operation)
+    }
 }

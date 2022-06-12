@@ -7,64 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "59EF21FB-E228-43E6-BEDA-BDEF284C6E93"
-            shouldBeEnabled = "Yes"
+            uuid = "4EA2BBBA-5062-4FF9-82C4-7D2D5454EBB4"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UltimatePortfolio/EditProjectView.swift"
+            filePath = "UltimatePortfolio/Extensions/CoreData/Project-CoreDataHelpers.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2B61ADA2-24C2-4F53-8188-5C232199F352"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UltimatePortfolio/Bundle-Decodable.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "decode(_:from:dateDecodingStrategy:keyDecodingStrategy:)"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "checkCloudStatus(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "46D877BC-A71C-43C4-B3B4-C7E02D080430"
-            shouldBeEnabled = "Yes"
+            uuid = "340CF239-59AE-4EF0-8D6E-EC87BAF7A635"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UltimatePortfolio/Activities/Projects/EditProjectView.swift"
+            filePath = "UltimatePortfolio/Extensions/CoreData/Project-CoreDataHelpers.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "uploadToCloud()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E93F8447-3192-4F40-BD23-8429E906584D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UltimatePortfolio/Activities/Community/SharedItemsView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "sendChatMessage()"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "checkCloudStatus(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

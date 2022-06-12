@@ -5,6 +5,10 @@
 //  Created by Andrew CP Markham on 8/5/22.
 //
 
+// CloudKit cloud storage consol: https://icloud.developer.apple.com
+// NOTE: Reemeber this will not work on simulator, only real device allows for
+// reading a writing data to iCloud stroage.
+
 import CloudKit
 import SwiftUI
 
@@ -39,7 +43,7 @@ struct SharedProjectsView: View {
         .onAppear(perform: fetchSharedProjects)
     }
 
-    /// Function to fetch shared pprojects from iCloud and load them into memory
+    /// Function to fetch shared projects from iCloud and load them into memory
     func fetchSharedProjects() {
 
         guard loadState == .inactive else { return }

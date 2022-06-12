@@ -10,6 +10,10 @@ import CoreHaptics
 import CloudKit
 
 struct EditProjectView: View {
+    enum CloudStatus {
+        case checking, exists, absent
+    }
+
     @ObservedObject var project: Project
     @EnvironmentObject var dataController: DataController
     @Environment(\.presentationMode) var presentationMode
@@ -23,6 +27,7 @@ struct EditProjectView: View {
     @State private var showingNotificationsError = false
     @AppStorage("username") var username: String?
     @State private var showingSignIn = false
+    @State private var cloudStatus = CloudStatus.checking
 
     let colorColumns = [GridItem(.adaptive(minimum: 44))
     ]
@@ -82,10 +87,20 @@ struct EditProjectView: View {
         }
         .navigationTitle("Edit Project")
         .toolbar {
-            Button(action: uploadToCloud) {
-                Label("Upload to iCloud", systemImage: "icloud.and.arrow.up")
+            switch cloudStatus {
+            case .checking:
+                ProgressView()
+            case .exists:
+                Button(action: removeFromCloud) {
+                    Label("Remove to iCloud", systemImage: "icloud.slash")
+                }
+            case .absent:
+                Button(action: uploadToCloud) {
+                    Label("Upload to iCloud", systemImage: "icloud.and.arrow.up")
+                }
             }
         }
+        .onAppear(perform: updateCloudStatus)
         .onDisappear(perform: dataController.save)
         .alert(isPresented: $showingDeleteConfirm) {
             Alert(
@@ -210,18 +225,64 @@ struct EditProjectView: View {
             let operation = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
             operation.savePolicy = .allKeys
 
+            // Code for < IOS 15
+//            operation.modifyRecordsCompletionBlock = { _, _, error in
+//                updateCloudStatus()
+//            }
+
             // Modified over tutorial as operation.modifyRecordsCompletionBlock is depricated
             operation.modifyRecordsResultBlock = { result in
                 switch result {
                 case .success:
+                    updateCloudStatus()
                     print("Upload Success")
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
                 }
             }
+
+            cloudStatus = .checking
             CKContainer.default().publicCloudDatabase.add(operation)
         } else {
             showingSignIn = true
+        }
+    }
+
+    func removeFromCloud() {
+        /// fucntion to remove record from iCloud storage
+        let name = project.objectID.uriRepresentation().absoluteString
+        let id = CKRecord.ID(recordName: name)
+
+        let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [id])
+
+        // Code for < IOS 15
+//        operation.modifyRecordsCompletionBlock = { _, _, _ in
+//            updateCloudStatus()
+//        }
+
+//      Not able to get this working for delete
+        operation.modifyRecordsResultBlock = { result in
+            print("This refuses to be called")
+            switch result {
+            case .success:
+                updateCloudStatus()
+            case .failure:
+                print("Error: Unable to delete project form Cloud")
+            }
+        }
+        cloudStatus = .checking
+        CKContainer.default().publicCloudDatabase.add(operation)
+
+    }
+
+    func updateCloudStatus() {
+        /// Check the existance of record in iCloudf and update the status
+        project.checkCloudStatus { exists in
+            if exists {
+                cloudStatus = .exists
+            } else {
+                cloudStatus = .absent
+            }
         }
     }
 }
