@@ -5,7 +5,7 @@
 //  Created by Andrew CP Markham on 13/6/2022.
 //
 
-import Foundation
+import SwiftUI
 import CloudKit
 
 struct CloudError: Identifiable {
@@ -13,6 +13,10 @@ struct CloudError: Identifiable {
     /// Wrapper for Cloud Error Strings to make then Identifiable for the purposes of error handling and presenting within alerts
     var id: String { message }
     var message: String = ""
+
+    var localisedMessage: LocalizedStringKey {
+        LocalizedStringKey(message)
+    }
 
     init(error: Error) {
         self.message = getCloudKitError(from: error)
@@ -31,16 +35,16 @@ struct CloudError: Identifiable {
             return "A fatal error occured: \(error.localizedDescription)"
             // Comunication errors
         case .networkFailure, .networkUnavailable, .serverResponseLost, .serviceUnavailable:
-            return "There was a problem communicating with iCloud, please check your network connection and try again."
+            return "There was a problem communicating with iCloud; please check your network connection and try again."
             // Authentication
         case .notAuthenticated:
-            return "There was a problem with you iCloud account, please check that you're logged into iCloud."
+            return "There was a problem with your iCloud account; please check that you're logged in to iCloud."
             // Too many store/delete requests for same data
         case .requestRateLimited:
-            return "You've hit iCloud's rate limit, please wait a moment then try again."
+            return "You've hit iCloud's rate limit; please wait a moment then try again."
             // Storage quota exceeded - very rare
         case .quotaExceeded:
-            return "You've exceeded you iCloud quota, please clear up some space then try again."
+            return "You've exceeded your iCloud quota; please clear up some space then try again."
         default:
             return "An unknown error occured: \(error.localizedDescription)"
         }

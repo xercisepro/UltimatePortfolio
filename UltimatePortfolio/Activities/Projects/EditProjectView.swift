@@ -9,6 +9,7 @@ import SwiftUI
 import CoreHaptics
 import CloudKit
 
+// swiftlint:disable:next type_body_length
 struct EditProjectView: View {
     enum CloudStatus {
         case checking, exists, absent
@@ -84,6 +85,15 @@ struct EditProjectView: View {
                     showingDeleteConfirm.toggle()
                 }
                 .accentColor(.red)
+                .alert(isPresented: $showingDeleteConfirm) {
+                    Alert(
+                        title: Text("Delete project"),
+                        message: Text("Are you sure you want to delete this project? You will also delete all the items if contains."), // swiftlint:disable:this line_length
+                        primaryButton: .default(Text("Delete"),
+                                                action: delete),
+                        secondaryButton: .cancel()
+                    )
+                }
             }
         }
         .navigationTitle("Edit Project")
@@ -92,7 +102,9 @@ struct EditProjectView: View {
             case .checking:
                 ProgressView()
             case .exists:
-                Button(action: removeFromCloud) {
+                Button {
+                        removeFromCloud(deleteLocal: false)
+                } label: {
                     Label("Remove to iCloud", systemImage: "icloud.slash")
                 }
             case .absent:
@@ -103,19 +115,10 @@ struct EditProjectView: View {
         }
         .onAppear(perform: updateCloudStatus)
         .onDisappear(perform: dataController.save)
-        .alert(isPresented: $showingDeleteConfirm) {
-            Alert(
-                title: Text("Delete project"),
-                message: Text("Are you sure you want to delete this project? You will also delete all the items if contains."), // swiftlint:disable:this line_length
-                primaryButton: .default(Text("Delete"),
-                                        action: delete),
-                secondaryButton: .cancel()
-            )
-        }
         .alert(item: $cloudError) { error in
             Alert(
                 title: Text("There was an error"),
-                message: Text(error.message)
+                message: Text(error.localisedMessage)
             )
         }
         .sheet(isPresented: $showingSignIn, content: SignInView.init)
@@ -188,10 +191,17 @@ struct EditProjectView: View {
             }
         }
     }
+
+    /// local copy delete request
     func delete() {
-        dataController.delete(project)
-        presentationMode.wrappedValue.dismiss()
+        if cloudStatus == .exists {
+            removeFromCloud(deleteLocal: true)
+        } else {
+            dataController.delete(project)
+            presentationMode.wrappedValue.dismiss()
+        }
     }
+
     func colorButton(for item: String) -> some View {
         ZStack {
             Color(item)
@@ -255,11 +265,11 @@ struct EditProjectView: View {
             operation.modifyRecordsResultBlock = { result in
                 switch result {
                 case .success:
-                    updateCloudStatus()
                     print("Upload Success")
                 case .failure(let error):
                     cloudError = CloudError(error: error)
                 }
+                updateCloudStatus()
             }
 
             cloudStatus = .checking
@@ -269,8 +279,8 @@ struct EditProjectView: View {
         }
     }
 
-    func removeFromCloud() {
-        /// fucntion to remove record from iCloud storage
+    func removeFromCloud(deleteLocal: Bool) {
+        /// iCloud delete request
         let name = project.objectID.uriRepresentation().absoluteString
         let id = CKRecord.ID(recordName: name)
 
@@ -284,7 +294,7 @@ struct EditProjectView: View {
 //            updateCloudStatus()
 //        }
 
-        // Opperation result
+        // Network result
         operation.modifyRecordsResultBlock = { result in
             switch result {
             case .success:
@@ -294,15 +304,21 @@ struct EditProjectView: View {
             }
         }
 
-//      Not able to get this working for delete
+        // Opperation result
         operation.modifyRecordsResultBlock = { result in
             print("This refuses to be called")
             switch result {
             case .success:
-                updateCloudStatus()
+                if deleteLocal {
+                    dataController.delete(project)
+                    DispatchQueue.main.async {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
             case .failure:
                 print("Error: Unable to delete project form Cloud")
             }
+            updateCloudStatus()
         }
         cloudStatus = .checking
         CKContainer.default().publicCloudDatabase.add(operation)

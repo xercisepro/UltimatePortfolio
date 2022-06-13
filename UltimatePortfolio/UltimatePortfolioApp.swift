@@ -24,6 +24,7 @@ struct UltimatePortfolioApp: App {
 
         // Hardcoded user for test environment
         #if targetEnvironment(simulator)
+        // Force a specific username because SignIn with Apple doesn't work in the simulator
         UserDefaults.standard.set("XercisePro", forKey: "username")
         #endif
     }

@@ -18,6 +18,7 @@ struct SharedItemsView: View {
     // Chat Variables
     @State private var messages = [ChatMessage]()
     @AppStorage("username") var username: String?
+    @AppStorage("chatCount") var chatCount = 0
     @State private var showingSighIn = false
     @State private var newChatText = ""
     @State private var messagesLoadState = LoadState.inactive
@@ -90,7 +91,7 @@ struct SharedItemsView: View {
         .alert(item: $cloudError) { error in
             Alert(
                 title: Text("There was an error"),
-                message: Text(error.message)
+                message: Text(error.localisedMessage)
             )
         }
         .sheet(isPresented: $showingSighIn, content: SignInView.init)
@@ -183,6 +184,7 @@ struct SharedItemsView: View {
             } else if let record = record {
                 let message = ChatMessage(from: record)
                 messages.append(message)
+                chatCount += 1
             }
         }
 
