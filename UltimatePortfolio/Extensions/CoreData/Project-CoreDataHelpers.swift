@@ -111,14 +111,12 @@ extension Project {
         let operation = CKFetchRecordsOperation(recordIDs: [id])
         operation.desiredKeys = ["recordID"]
 
-//      Network Failure Check Code
-//        operation.fetchRecordsResultBlock = { result in
-//            switch result {
-//            case .success:
-//                print( "Network Success")
-//
-//            case .failure:
-//                print("Network Failure")
+        // Code for < IOS 15
+//        operation.fetchRecordsCompletionBlock = { records, _ in
+//            if let records = records {
+//                completion(records.count == 1)
+//            } else {
+//                completion(false)
 //            }
 //        }
 
@@ -134,12 +132,14 @@ extension Project {
             }
         }
 
-        // Code for < IOS 15
-//        operation.fetchRecordsCompletionBlock = { records, _ in
-//            if let records = records {
-//                completion(records.count == 1)
-//            } else {
-//                completion(false)
+//      Network Failure Check Code
+//        operation.fetchRecordsResultBlock = { result in
+//            switch result {
+//            case .success:
+//                print( "Network Success")
+//
+//            case .failure:
+//                print("Network Failure")
 //            }
 //        }
 

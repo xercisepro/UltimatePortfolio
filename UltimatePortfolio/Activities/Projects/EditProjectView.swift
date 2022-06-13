@@ -28,6 +28,7 @@ struct EditProjectView: View {
     @AppStorage("username") var username: String?
     @State private var showingSignIn = false
     @State private var cloudStatus = CloudStatus.checking
+    @State private var cloudError: CloudError?
 
     let colorColumns = [GridItem(.adaptive(minimum: 44))
     ]
@@ -111,8 +112,15 @@ struct EditProjectView: View {
                 secondaryButton: .cancel()
             )
         }
+        .alert(item: $cloudError) { error in
+            Alert(
+                title: Text("There was an error"),
+                message: Text(error.message)
+            )
+        }
         .sheet(isPresented: $showingSignIn, content: SignInView.init)
     }
+
     func update() {
         project.title = title
         project.detail = detail
@@ -227,17 +235,30 @@ struct EditProjectView: View {
 
             // Code for < IOS 15
 //            operation.modifyRecordsCompletionBlock = { _, _, error in
+//                if let error = error {
+//                    cloudError = error.getCloudKitError()
+//                }
 //                updateCloudStatus()
 //            }
 
-            // Modified over tutorial as operation.modifyRecordsCompletionBlock is depricated
+            // Opperation result
+            operation.modifyRecordsResultBlock = { result in
+                switch result {
+                case .success:
+                    print( "Network Success")
+                case .failure(let error):
+                    cloudError = CloudError(error: error)
+                }
+            }
+
+            // Data upload result
             operation.modifyRecordsResultBlock = { result in
                 switch result {
                 case .success:
                     updateCloudStatus()
                     print("Upload Success")
                 case .failure(let error):
-                    print("Error: \(error.localizedDescription)")
+                    cloudError = CloudError(error: error)
                 }
             }
 
@@ -256,9 +277,22 @@ struct EditProjectView: View {
         let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: [id])
 
         // Code for < IOS 15
-//        operation.modifyRecordsCompletionBlock = { _, _, _ in
+//        operation.modifyRecordsCompletionBlock = { _, _, error in
+//        if let error = error {
+//            cloudError = error.getCloudKitError()
+//        }
 //            updateCloudStatus()
 //        }
+
+        // Opperation result
+        operation.modifyRecordsResultBlock = { result in
+            switch result {
+            case .success:
+                print( "Network Success")
+            case .failure(let error):
+                cloudError = CloudError(error: error)
+            }
+        }
 
 //      Not able to get this working for delete
         operation.modifyRecordsResultBlock = { result in

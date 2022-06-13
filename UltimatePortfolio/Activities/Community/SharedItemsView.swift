@@ -21,6 +21,7 @@ struct SharedItemsView: View {
     @State private var showingSighIn = false
     @State private var newChatText = ""
     @State private var messagesLoadState = LoadState.inactive
+    @State private var cloudError: CloudError?
 
     // Chat Message display Footer
     @ViewBuilder var messagesFooter: some View {
@@ -86,6 +87,12 @@ struct SharedItemsView: View {
             fetchSharedItems()
             fetchChatMessages()
         }
+        .alert(item: $cloudError) { error in
+            Alert(
+                title: Text("There was an error"),
+                message: Text(error.message)
+            )
+        }
         .sheet(isPresented: $showingSighIn, content: SignInView.init)
     }
 
@@ -105,7 +112,10 @@ struct SharedItemsView: View {
         operation.desiredKeys = ["title", "detail", "completed"]
         operation.resultsLimit = 50
 
-        // Decode data returned
+        // Request and Decode data returned
+        // Cursors are based on data being fetched in batches and
+        // may need to be recursively called again
+        // Cursor isn't considered here.
         operation.recordMatchedBlock = { (_, result) in
             switch result {
             case let .success(record):
@@ -118,13 +128,11 @@ struct SharedItemsView: View {
                 items.append(sharedItem)
                 itemsLoadState = .success
             case let .failure(error):
-                print("error; \(error)")
+                cloudError = CloudError(error: error)
             }
         }
 
-        // Cursors are based on data being fetched in batches and
-        // may need to be recursively called again
-        // Cursor isn't considered here.
+        // Netork Response
         operation.queryResultBlock = { result in
             switch result {
             case .success:
@@ -132,7 +140,7 @@ struct SharedItemsView: View {
                     itemsLoadState = .noResults
                 }
             case let .failure(error):
-                print("error; \(error)")
+                cloudError = CloudError(error: error)
             }
         }
 
@@ -170,7 +178,7 @@ struct SharedItemsView: View {
         // send the new chat off the icloud
         CKContainer.default().publicCloudDatabase.save(message) { record, error in
             if let error = error {
-                print(error.localizedDescription)
+                cloudError = CloudError(error: error)
                 newChatText = backupChatText
             } else if let record = record {
                 let message = ChatMessage(from: record)
@@ -195,6 +203,7 @@ struct SharedItemsView: View {
         let operation = CKQueryOperation(query: query)
         operation.desiredKeys = ["from", "text"]
 
+        // Data Request Response
         operation.recordMatchedBlock = { (_, result) in
 
             switch result {
@@ -203,10 +212,11 @@ struct SharedItemsView: View {
                 messages.append(message)
                 messagesLoadState = .success
             case let .failure(error):
-                print("error: \(error)")
+                cloudError = CloudError(error: error)
             }
         }
 
+        // Network Response
         operation.queryResultBlock = { result in
             switch result {
             case .success:
@@ -214,7 +224,7 @@ struct SharedItemsView: View {
                     messagesLoadState = .noResults
                 }
             case let .failure(error):
-                print("error: \(error)")
+                cloudError = CloudError(error: error)
             }
 
         }
