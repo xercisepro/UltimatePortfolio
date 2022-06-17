@@ -52,7 +52,9 @@ struct ContentView: View {
         .onContinueUserActivity(CSSearchableItemActionType, perform: moveToHome) // spotlight activity
         .onContinueUserActivity(newProjectActivity, perform: createProject) // shortcut activity
         .userActivity(newProjectActivity, { activity in
+            #if os(iOS) || os(watchOS)
             activity.isEligibleForPrediction = true // this allows the OS prompt this based on user behaviour
+            #endif
             activity.title = "New Project"
         })
 

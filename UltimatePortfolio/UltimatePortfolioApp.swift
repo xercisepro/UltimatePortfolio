@@ -12,8 +12,10 @@ struct UltimatePortfolioApp: App {
     @StateObject var dataController: DataController
     @StateObject var unlockManager: UnlockManager
 
+    #if os(iOS)
     // A wrapper to enable appDelegate/sceneDelegate functionality when needed
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    #endif
 
     init() {
         let dataController = DataController()
@@ -39,7 +41,7 @@ struct UltimatePortfolioApp: App {
                 // scene phase so we can port to macOS, where scene
                 // phase won't detect our app losing focus.
                 .onReceive(
-                    NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification),
+                    NotificationCenter.default.publisher(for: .willResignActive),
                     perform: save
                 )
                 .onAppear(perform: dataController.appLaunched)

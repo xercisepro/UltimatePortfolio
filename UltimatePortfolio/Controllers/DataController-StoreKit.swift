@@ -13,6 +13,7 @@ import StoreKit
 extension DataController {
     /// Functionality for app review request to user
     func appLaunched () {
+        #if os(iOS)
         guard count(for: Project.fetchRequest()) >= 5 else { return }
         let allScenes = UIApplication.shared.connectedScenes
         let scene = allScenes.first { $0.activationState == .foregroundActive }
@@ -20,5 +21,6 @@ extension DataController {
         if let windowScene = scene as? UIWindowScene {
             SKStoreReviewController.requestReview(in: windowScene)
         }
+        #endif
     }
 }

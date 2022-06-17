@@ -11,7 +11,6 @@ struct ProjectView: View {
     static let openTag: String? = "Open"
     static let closedTag: String? = "Closed"
     @StateObject var viewModel: ViewModel
-    @State private var showingSortOrder = false
 
     var projectsList: some View {
         List {
@@ -38,33 +37,26 @@ struct ProjectView: View {
         .listStyle(InsetGroupedListStyle())
     }
     var addProjectToolBarITem: some ToolbarContent {
-        ToolbarItem(placement: .navigationBarTrailing) {
+        ToolbarItem(placement: .primaryAction) {
             if viewModel.showClosedProjects == false {
                 Button {
-                    // In iOS 14.3 VoiceOver has a glitch that reads the label
-                    // "Add Project" as "Add" no matter what accessibility label
-                    // we give this button when using a label. As a result, when
-                    // VoiceOver is running we use text view as a replacement
-                    // to force a correct reading without losing the original layout.
                     withAnimation {
                         viewModel.addProject()
                     }
                 } label: {
-                    if UIAccessibility.isVoiceOverRunning {
-                        Text("Add Project")
-                    } else {
-                        Label("Add Project", systemImage: "plus")
-                    }
+                    Label("Add Project", systemImage: "plus")
                 }
             }
         }
     }
-    var sortProjectToolBarItem: some ToolbarContent {
-        ToolbarItem(placement: .navigationBarLeading) {
-            Button {
-                showingSortOrder.toggle()
+    var sortOrderToolBarItem: some ToolbarContent {
+        ToolbarItem(placement: .cancellationAction) {
+            Menu {
+                Button("Optimized") { viewModel.sortOrder = .optimised }
+                Button("Creation Button") { viewModel.sortOrder = .creationDate }
+                Button("Tile") { viewModel.sortOrder = .title }
             } label: {
-                Label("Sort", systemImage: "arrow.up.arrow.down")
+                Label("Sort", systemImage: "arror.up.arrow.down")
             }
         }
     }
@@ -81,14 +73,7 @@ struct ProjectView: View {
             .navigationTitle(viewModel.showClosedProjects ? "Closed Projects" : "Open Projects")
             .toolbar {
                 addProjectToolBarITem
-                sortProjectToolBarItem
-            }
-            .actionSheet(isPresented: $showingSortOrder) {
-                ActionSheet(title: Text("Sort items"), message: nil, buttons: [
-                    .default(Text("Optimised")) { viewModel.sortOrder = .optimised },
-                    .default(Text("Creation Date")) { viewModel.sortOrder = .creationDate},
-                    .default(Text("Title")) { viewModel.sortOrder = .title }
-                ])
+                sortOrderToolBarItem
             }
             SelectSomethingView()
         }
