@@ -23,10 +23,12 @@ struct EditItemView: View {
     }
     var body: some View {
         Form {
+
             Section(header: Text("Basic settings")) {
                 TextField("Item name", text: $title.onChange(update))
                 TextField("Description", text: $detail.onChange(update))
             }
+
             Section(header: Text("Priority")) {
                 Picker("Priority", selection: $priotity.onChange(update)) {
                     Text("Low").tag(1)
@@ -35,12 +37,16 @@ struct EditItemView: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
             }
+
             Section {
                 Toggle("Mark Completed", isOn: $completed.onChange(update))
             }
+
+            MacOnlySpacer()
         }
         .navigationTitle("Edit Item")
         .onDisappear(perform: save)
+        .macOnlyPadding()
     }
     func update() {
         item.project?.objectWillChange.send()

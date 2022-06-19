@@ -19,6 +19,7 @@ extension ProjectView {
         @Published var projects = [Project]()
         // Published created an observer pattern source
         @Published var showingUnlockView = false
+        @Published var selectedItem: Item?
 
         init(dataController: DataController, showClosedProjects: Bool) {
             self.dataController = dataController
@@ -67,6 +68,12 @@ extension ProjectView {
                 let item = allItems[offset]
                 dataController.delete(item)
             }
+            dataController.save()
+        }
+
+        func delete(_ item: Item) {
+            /// Funciton to delete an item that is used in MacOS where swipe isn't enable.
+            dataController.delete(item)
             dataController.save()
         }
 
